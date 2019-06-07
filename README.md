@@ -13,8 +13,9 @@ php sandphoto.inc > 6inch.jpg
 ```
 
 appendix
-id | target_type
---- | ---
+
+|id | target_type|
+|--- | ---|
 1 | 大一寸 (3.30cm * 4.80cm)
 2 | 小一寸 (2.20cm * 3.20cm)
 3 | 彩色大一寸 (4.00cm * 5.50cm)
@@ -48,8 +49,8 @@ id | target_type
 44 | 结婚证照片 (6.00cm * 4.00cm)
 45 | 赴美非移民签证 (5.00cm * 5.00cm)
 
-id | container_type
---- | ---
+|id | container_type|
+|--- | ---|
 27 | 5寸(3R) (12.70cm * 8.90cm)
 28 | 6寸(4R) (15.20cm * 10.20cm)
 29 | 7寸(5R) (17.80cm * 12.70cm)
