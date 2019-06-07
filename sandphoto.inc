@@ -48,9 +48,7 @@ class Photo
 				$color = imagecolorallocate($this->im, 0, 0, 120);
 		}
 		imagefill($this->im, 1, 1, $color);
-		$text = "www.sandcomp.com";
 		$white = imagecolorallocate($this->im, 255, 255, 255);
-		imagestring($this->im, 3, $this->container_width - strlen($text) * 7.5 , $this->container_height - 20 , $text, $white);
 	}
 
 	function get_pixel_from_CM($value)
@@ -206,7 +204,7 @@ class PhotoTypeParser
 		$this->count = 0;
 		while (($line= fgets($fh)) !== FALSE)
 		{
-			$data = split(',', $line);
+			$data = explode(',', $line);
 			if (count($data) != 3) continue;
 
 			$this->name_array[$this->count] = $data[0];
@@ -247,4 +245,26 @@ class PhotoTypeParser
 		print("</select>");
 	}
 };
+function main(){
+		$filename = "test.jpg"; // jpeg only
+                $target_type = 17;
+                $container_type = 28;
+                //print "type:$container_type";
+                $parser = new PhotoTypeParser();
+                $parser->parse('phototype.txt');
+                $cw = $parser->get_width($container_type);
+                $ch = $parser->get_height($container_type);
+                $tw = $parser->get_width($target_type);
+                $th = $parser->get_height($target_type);
+                $p = new Photo();
+                $p->set_container_size($cw, $ch);
+                $p->set_target_size($tw, $th);
+                $n = $p->put_photo($filename, "gray");
+                // $p->render_image();
+                // $p->preview_image();
+                //$download_name = $n ."张" . $parser->get_name($target_type) . "[以" . $parser->get_name($container_type) . "冲洗].jpg";
+                //$p->download_image( $download_name );
+		imagejpeg($p->im, NULL, 100);
+}
+main();
 ?>
